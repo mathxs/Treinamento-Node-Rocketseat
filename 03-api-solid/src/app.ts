@@ -6,19 +6,19 @@ import { env } from './env'
 export const app = fastify()
 app.register(appRoutes)
 
-app.setErrorHandler((error,_request,reply) => {
-  if(error instanceof ZodError){
+app.setErrorHandler((error, _request, reply) => {
+  if (error instanceof ZodError) {
     return reply
       .status(400)
-      .send({message: 'Validation error.', issues: error.format()})
+      .send({ message: 'Validation error.', issues: error.format() })
   }
 
-  if (env.NODE_ENV !== 'production'){
+  if (env.NODE_ENV !== 'production') {
     console.error(error)
-  }else {
-    //TODO mandar para uma ferramenta de controle de erro
+  } else {
+    // TODO mandar para uma ferramenta de controle de erro
   }
-  return reply.status(500).send({message: 'Internal server error.'})
+  return reply.status(500).send({ message: 'Internal server error.' })
 })
 // const prisma = new PrismaClient()
 
