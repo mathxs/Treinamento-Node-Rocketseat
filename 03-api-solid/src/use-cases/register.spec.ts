@@ -1,16 +1,22 @@
 // import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
-import { expect, describe, test } from 'vitest'
+import { expect, describe, test, beforeEach } from 'vitest'
 import { RegisterUseCase } from './register'
 import { compare } from 'bcryptjs'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { UserAlreadyExsitsError } from './errors/user-already-exists-error'
 
-describe('Register Use Case', () => {
-  test('shuld be able to register', async () => {
-    const userRepositoty = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(userRepositoty)
+let userRepositoty: InMemoryUsersRepository
+let sut: RegisterUseCase
 
-    const { user } = await registerUseCase.execute({
+describe('Register Use Case', () => {
+  beforeEach(() => {
+    // const prismaUsersRepository = new PrismaUsersRepository()
+    // const registerUseCase = new RegisterUseCase(prismaUsersRepository)
+    userRepositoty = new InMemoryUsersRepository()
+    sut = new RegisterUseCase(userRepositoty)
+  })
+  test('shuld be able to register', async () => {
+    const { user } = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -20,13 +26,7 @@ describe('Register Use Case', () => {
   })
 
   test('should hash user password upon registration', async () => {
-    // const prismaUsersRepository = new PrismaUsersRepository()
-    // const registerUseCase = new RegisterUseCase(prismaUsersRepository)
-
-    const userRepositoty = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(userRepositoty)
-
-    const { user } = await registerUseCase.execute({
+    const { user } = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -41,18 +41,16 @@ describe('Register Use Case', () => {
   })
 
   test('should not be able to register with same email twice', async () => {
-    const userRepositoty = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(userRepositoty)
     const email = 'johndoe@example.com'
 
-    await registerUseCase.execute({
+    await sut.execute({
       name: 'John Doe',
       email,
       password: '123456',
     })
 
     await expect(() =>
-      registerUseCase.execute({
+      sut.execute({
         name: 'John Doe',
         email,
         password: '123456',
