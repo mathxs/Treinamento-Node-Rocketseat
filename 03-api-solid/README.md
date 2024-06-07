@@ -1,4 +1,4 @@
-# App
+# Projeto 3: Construção da API Solid, de um aplicativo tipo a GymPass
 
 GymPass style app.
 
