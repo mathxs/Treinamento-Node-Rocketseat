@@ -18,7 +18,7 @@ export async function authenticate(
       email,
       password,
     })
-    console.log(user)
+    // console.log(user)
     const token = await reply.jwtSign(
       {},
       {
@@ -27,7 +27,7 @@ export async function authenticate(
         },
       },
     )
-    console.log(token)
+    // console.log(token)
     return reply.status(200).send({ token })
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {

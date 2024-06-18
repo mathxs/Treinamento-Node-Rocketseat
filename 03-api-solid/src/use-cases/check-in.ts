@@ -29,7 +29,7 @@ export class CheckInUseCase {
     userLongitude,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
     const gym = await this.gymsRepository.findByID(gymId)
-    console.log(gym)
+    // console.log(gym)
     if (!gym) {
       throw new ResourceNotFoundError()
     }
