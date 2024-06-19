@@ -24,7 +24,7 @@ describe('Check-In Use Case', () => {
       description: '',
       phone: '',
       latitude: -16.6756352,
-      longtitude: -49.2535808,
+      longitude: -49.2535808,
     })
   })
 
@@ -90,7 +90,7 @@ describe('Check-In Use Case', () => {
       description: '',
       phone: '',
       latitude: new Decimal(-16.6970115),
-      longtitude: new Decimal(-49.3806102),
+      longitude: new Decimal(-49.3806102),
     })
 
     await expect(

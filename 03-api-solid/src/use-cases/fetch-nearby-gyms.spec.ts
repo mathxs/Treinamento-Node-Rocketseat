@@ -17,14 +17,14 @@ describe('Fetch Nearby Gyms Use Case', () => {
       description: 'Sou uma academia',
       phone: '11912345678',
       latitude: -16.6756352,
-      longtitude: -49.2535808,
+      longitude: -49.2535808,
     })
     await gymsRepository.create({
       title: 'Far Gym',
       description: 'Sou uma academia',
       phone: '11912345678',
       latitude: -16.3699815,
-      longtitude: -48.9382715,
+      longitude: -48.9382715,
     })
 
     const { gyms } = await sut.execute({

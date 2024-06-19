@@ -17,14 +17,14 @@ describe('Search Gyms Use Case', () => {
       description: 'Sou uma academia',
       phone: '11912345678',
       latitude: -16.6756352,
-      longtitude: -49.2535808,
+      longitude: -49.2535808,
     })
     await gymsRepository.create({
       title: 'TypeScript Gym',
       description: 'Sou uma academia',
       phone: '11912345678',
       latitude: -16.6756352,
-      longtitude: -49.2535808,
+      longitude: -49.2535808,
     })
 
     const { gyms } = await sut.execute({
@@ -43,7 +43,7 @@ describe('Search Gyms Use Case', () => {
         description: 'Sou uma academia',
         phone: '11912345678',
         latitude: -16.6756352,
-        longtitude: -49.2535808,
+        longitude: -49.2535808,
       })
     }
 

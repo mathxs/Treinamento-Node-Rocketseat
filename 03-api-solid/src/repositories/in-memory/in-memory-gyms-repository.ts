@@ -23,7 +23,7 @@ export class InMemoryGymsRepository implements GymsRepositoty {
       description: data.description ?? null,
       phone: data.phone ?? null,
       latitude: new Prisma.Decimal(data.latitude.toString()),
-      longtitude: new Prisma.Decimal(data.longtitude.toString()),
+      longitude: new Prisma.Decimal(data.longitude.toString()),
       created_at: new Date(),
     }
 
@@ -43,7 +43,7 @@ export class InMemoryGymsRepository implements GymsRepositoty {
         { latitude: params.latitude, longitude: params.longitude },
         {
           latitude: item.latitude.toNumber(),
-          longitude: item.longtitude.toNumber(),
+          longitude: item.longitude.toNumber(),
         },
       )
       return distance < 10
